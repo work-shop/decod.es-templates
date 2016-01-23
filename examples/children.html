@@ -1,0 +1,17 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+
+<h1>This is the Examples Children template.</h1>
+<pre><code class="template-location">static/examples/children.html</code></pre>
+
+
+<ul>
+{% for object in item %}
+	
+	<li class="subobject"><a href="{{ url( object ) }}">{{ name( object ) }}</li>
+
+{% endfor %}
+</ul>
+
+{% endblock %}

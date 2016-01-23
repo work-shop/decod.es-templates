@@ -1,0 +1,31 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+
+<h1>This is the source/index.html template</h1>
+
+<ul>
+
+	{% for partition in item %}
+
+	<li class="source-module">
+
+		<h2>{{ name( partition ) }}</h2>
+
+		<ul class="source-classes">
+
+		{% for object in partition %}
+
+			<li class="source-class"><a href="{{ url( object ) }}">{{ name( object ) }}</a></li>		
+
+		{% endfor %}
+
+		</ul>
+
+	</li>
+
+	{% endfor %}
+</ul>
+
+
+{% endblock %}

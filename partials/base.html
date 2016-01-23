@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}Decodes{% endblock %}</title>
+</head>
+<body>
+
+	{% block content %}{% endblock %}
+
+	{% block scripts_extra %}{% endblock %}
+
+	<script type="text/javascript">console.log( {{ item|json|safe }} );</script>
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>

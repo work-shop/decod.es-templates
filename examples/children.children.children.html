@@ -1,0 +1,92 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+
+<h1>{{ name( item ) }} - {{ lookup("Interval") }} </h1>
+
+<ul>
+{% for object in item %}
+	
+	<li class="subobject">
+
+		<div class="subobject-head">
+			<h2>{{ name( object ) }}</h2>
+
+			{% if object.references %}
+			<ul>
+			<h3>References:</h3>
+			{% for references in object.references.classes %}
+
+				<li><a href="{{ lookup( loop.key ) }}">{{ loop.key }}</a></li>
+
+			{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+		{% if object.documentation %}
+		<hgroup>
+			{% for header in object.documentation %}
+
+				<h4>{{ header }}</h4>
+
+			{% endfor %}
+		</hgroup>
+		{% endif %}
+
+		{% if object.required %}
+		<div class="required">
+			<h6>Required</h6>
+			<ul>
+				{% for line in object.required %}
+				
+				<li class="example-requirement">{{ resolve( line ) }}</li>
+
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+
+		{% if object.result %}
+		<div class="result">
+			<h6>Results</h6>
+			<ul>
+				{% for line in object.result %}
+				
+				<li class="example-result">{{ resolve( line ) }}</li>
+
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+
+		{% if object.blocks %}
+		<ul class="example-blocks">
+
+		{% for block in object.blocks %}
+
+		<li class="example-block">
+			<p class="block-description">
+				{{ block.description }}
+			</p>
+			{% for codeline in block.code.content %}
+
+				<pre><code class="line">{{ resolve( codeline, object.references ) }}</code></pre>
+
+			{% endfor %}
+		</li>
+
+		{% endfor %}
+
+		</ul>
+		{% endif %}
+
+		<div class="subobject-modified">
+			<span>Input Last Touched: </span><pre><code>{{ object._modified|date('M d, Y') }}</code></pre>
+		</div>
+
+	</li>
+
+{% endfor %}
+</ul>
+
+{% endblock %}

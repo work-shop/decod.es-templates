@@ -1,0 +1,16 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+
+<h1>This is the home template.</h1>
+
+
+<ul>
+{% for object in item %}
+	
+	<li class="subobject"><a href="{{ url( object ) }}">{{ name( object ) }}</li>
+
+{% endfor %}
+</ul>
+
+{% endblock %}

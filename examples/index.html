@@ -1,16 +1,34 @@
 {% extends "partials/base.html" %}
 
+{% import "partials/examples.html" as examples %}
+{% import "partials/source.html" as source %}
+
+{% block body-attributes %}class="examples-home"{% endblock %}
+
 {% block content %}
 
-<h1>This is the Examples Index template.</h1>
+    <section class="region">
 
+        {{ examples.header() }}
 
-<ul>
-{% for object in item %}
-	
-	<li class="subobject"><a href="{{ url( object ) }}">{{ name( object ) }}</li>
+        {{ examples.nav() }}
 
-{% endfor %}
-</ul>
+    </section>
+
+    <section class="region">
+
+        {% for object in item.objects %}
+
+            {{ examples.section( object, "open" ) }}
+
+        {% endfor %}
+
+        {% for object in item.processes %}
+
+            {{ examples.section( object, "open" ) }}
+
+        {% endfor %}
+
+    </section>
 
 {% endblock %}

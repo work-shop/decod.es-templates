@@ -1,0 +1,27 @@
+@include media-lg {
+    .region {
+        @include outer-container( 90% );
+        margin:0 auto;
+    }
+}
+
+@include media-md {
+    .region {
+        @include outer-container( 90% );
+        margin:0 auto;
+    }
+}
+
+@include media-sm {
+    .region {
+        @include outer-container( 85% );
+        margin:0 auto;
+    }
+}
+
+@include media-xs {
+    .region {
+        @include outer-container( 78% );
+        margin:0 auto;
+    }
+}

@@ -1,0 +1,216 @@
+/** ---- examples headers ---- */
+
+.header {
+    @include span-columns(12 of 12);
+    @include omega();
+
+    height:50vh;
+}
+
+/** ---- examples navigation ---- */
+
+/** ---- examples division ---- */
+
+
+.division {
+    @include span-columns(12 of 12);
+    @include omega();
+
+    position: relative;
+
+    padding-bottom: .5em;
+    border-bottom: $primary-division-width solid $body-dark-color;
+    margin-bottom: 1.5em;
+}
+
+.division-label {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.division-fold-icon {
+    font-size: .8em;
+    position: absolute;
+    left: -30px;
+    top:0px;
+}
+
+[data-fold-state="open"] .division-fold-icon {
+    @include transform( rotate(90deg));
+}
+
+[data-fold-state="closed"] .division-fold-icon {
+
+}
+
+/** ---- examples content region  ---- */
+
+.content-list {
+    @include span-columns( 12 of 12 );
+    @include omega();
+
+    margin-bottom: 2em;
+}
+
+
+/** ---- examples card ---- */
+
+
+
+.example-card {
+
+    margin-bottom: 2em;
+
+    & .card-body {
+        @include span-columns(4 of 4);
+
+
+
+        padding:.5em;
+        padding-bottom: 1em;
+        border-bottom: $secondary-division-width solid $body-dark-color;
+
+
+        .card-title {
+            color:$body-brand-color;
+            margin-bottom: 1em;
+            span {
+                border-bottom: 2px solid transparent;
+            }
+        }
+
+        .example-count {
+            color:$body-base-color;
+        }
+
+        &:hover {
+            background-color: lighten($body-brand-color, 45);
+            .card-title span {
+                border-bottom: 2px solid $body-brand-color;
+            }
+
+        }
+    }
+
+}
+
+.example-source-references {
+    @include span-columns( 4 of 4 );
+    padding:.5em;
+    padding-top:1em;
+}
+
+.example-source-icon {
+    position: relative;
+    width:36px;
+    height:36px;
+    text-align: center;
+
+    background-color: $body-light-color;
+
+    @include border-radius(18px);
+
+    &:hover {
+
+        background-color: $body-dark-color;
+
+        a {
+            color: $body-white-color;
+        }
+
+        .example-source-reference-count {
+            display: block;
+        }
+    }
+
+    a {
+        @extend .ocr-a-std;
+        font-size: .8em;
+
+        color: $body-dark-color;
+        border-bottom: 0;
+        @include vertical-center();
+    }
+
+
+}
+
+.example-source-reference-count {
+    display: none;
+
+    position:absolute;
+    top:-7px;
+    left:25px;
+
+    font-size: .9em;
+
+    width: 22px;
+    height: 22px;
+
+    background-color: $body-light-color;
+    color:$body-dark-color;
+    border:2px solid $body-white-color;
+
+    @include border-radius(11px);
+}
+
+
+
+.example-card-title {
+    font-size:1.15em;
+}
+
+@include media-lg() {
+    .card {
+        @include span-columns( 4 of 12 );
+        @include omega( 3n );
+    }
+
+    .example-source-reference {
+        @include span-columns( 1 of 6 );
+        @include omega( 6n );
+
+        margin-bottom: 1em;
+
+
+    }
+}
+
+@include media-md() {
+    .card {
+        @include span-columns( 4 of 12 );
+        @include omega( 3n );
+    }
+
+    .example-source-reference {
+        @include span-columns( 1 of 6 );
+        @include omega( 6n );
+        margin-bottom: 1em;
+    }
+}
+
+@include media-sm() {
+    .card {
+        @include span-columns( 6 of 12 );
+        @include omega( 2n );
+    }
+
+    .example-source-reference {
+        @include span-columns( 1 of 4 );
+        @include omega( 4n );
+        margin-bottom: 1em;
+    }
+}
+
+@include media-xs() {
+    .card {
+        @include span-columns( 12 of 12 );
+        @include omega( 1n )
+    }
+
+    .example-source-reference {
+        @include span-columns( 1 of 6 );
+        @include omega( 6n );
+        margin-bottom: 1em;
+    }
+}

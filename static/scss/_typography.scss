@@ -1,0 +1,82 @@
+.inconsolata {
+    font-family: "inconsolata", sans-serif;
+}
+
+.ocr-a-std {
+    font-family: "ocr-a-std", monospace;
+}
+
+.ff-meta {
+    font-family: "ff-meta-web-pro", monospace;
+}
+
+body {
+    @extend .ff-meta;
+    font-size: $body-font-size;
+    z-index: $body-z-index;
+
+    color:$body-base-color;
+}
+
+h1 {
+    @extend .ocr-a-std;
+    font-size: 1.8em;
+    margin-bottom: 1.4em;
+    line-height: 1.8em;
+}
+
+h2 {
+    @extend .ocr-a-std;
+    font-size: 1.3em;
+    margin-bottom: 1.4em;
+    line-height: 1.65em;
+}
+
+h3 {
+    @extend .ocr-a-std;
+    font-size: 1.15em;
+    margin-bottom: 1em;
+    line-height: 1.45em;
+}
+
+h4 {
+    @extend .ff-meta;
+    font-size: .8em;
+}
+
+p {
+    @extend .ff-meta;
+    font-size: 1em;
+    line-height: 1.35em;
+
+    margin-bottom: 1.15em;
+
+}
+
+p.small {
+    @extend .ff-meta;
+    font-size: .8em;
+    line-height: 1.5em;
+
+    margin-bottom: 1.35em;
+
+}
+
+a {
+    color:$body-brand-color;
+    text-decoration: none;
+    border-bottom: $anchor-underline solid $body-brand-color;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-size: italic;
+}
+
+
+@include media-sm() {
+
+};

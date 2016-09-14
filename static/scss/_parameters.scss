@@ -1,6 +1,68 @@
 $body-white-color: #ffffff;
 $body-light-color: #cccccc;
 $body-dark-color: #353535;
-$body-black-color: #111111;
+$body-black-color: #252525;
+$body-base-color: $body-black-color;
 
 $body-brand-color:red;
+
+$body-font-size: 16px;
+
+$lg-size: 1280px;
+$md-size: 950px;
+$sm-size: 540px;
+
+$page-margin: 50px;
+
+$overlay-z-index:2000;
+$menu-z-index:1000;
+$header-z-index:750;
+$body-z-index:0;
+
+$primary-division-width: 2px;
+$secondary-division-width: 1px;
+
+$anchor-underline: 2px;
+
+
+@mixin media-lg() {
+    @media screen and (min-width: $lg-size) {
+
+        @content;
+
+    }
+}
+
+@mixin media-md() {
+    @media screen and (min-width: $md-size) and (max-width: $lg-size) {
+
+        @content;
+
+    }
+}
+
+@mixin media-sm() {
+    @media screen and (min-width: $sm-size) and (max-width: $md-size) {
+
+        @content;
+
+    }
+}
+
+@mixin media-xs() {
+    @media screen and (max-width: $sm-size) {
+
+        @content;
+
+    }
+}
+
+@mixin border-radius( $radius ) {
+    @include border-top-radius( $radius );
+    @include border-bottom-radius( $radius );
+}
+
+@mixin vertical-center() {
+    position:relative;
+    top:25%;
+}

@@ -1,0 +1,64 @@
+{# this macro renders the header for examples #}
+{% macro header() %}
+    <div class="example-header header">
+        <h1 class="example-title">Examples</h1>
+    </div>
+{% endmacro %}
+
+{# this macro renders the navigation bar for examples #}
+{% macro nav() %}
+    <div class="example-nav nav">
+    </div>
+{% endmacro %}
+
+{# this macro renders the header for examples #}
+{% macro division( name ) %}
+    <div class="example-division division">
+        <h4 class="example-division-label division-label">{{ title( name ) }}</h4>
+        <span class="example-division-fold-icon division-fold-icon">&#9654;</span>
+    </div>
+{% endmacro %}
+
+{# this macro renders a card for an examples #}
+{% macro card( example ) %}
+    {% set references = exampleReferences( example ) %}
+    <li class="example-card card">
+        <a class="example-card-link card-link block" href="{{ url( example ) }}">
+            <div class="example-card-body card-body">
+                <h3 class="example-card-title card-title"><span>{{ title( name( example ) )}}</span></h3>
+                <h4 class="example-count"><span class="bold">{{ example|array|size }} Example{{ example|array|pluralize('s') }}</span>, {{ references|array|size }} Class Reference{{ references|array|pluralize('s') }}.</h4>
+            </div>
+        </a>
+        <ul class="example-source-references">
+            {% for referenceCount in references %}
+                <li class="example-source-reference">
+                    <div class="example-source-icon">
+                        <a class="block" href="{{ lookup( loop.key ) }}">{{ condense( loop.key ) }}</a>
+                        <span class="example-source-reference-count">{{ referenceCount }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endmacro %}
+
+{# this macro renders a section of examples. it chains together the examples and division cards #}
+{% macro section( contents, state ) %}
+
+    <div id="{{ name( contents )|replace('-', ' ', 'g') }}" class="examples-list content-list" data-fold-state="{{ state }}">
+
+        {{ division( name( contents ) ) }}
+
+        <ul class="examples-in-section">
+
+            {% for example in contents %}
+
+                {{ card( example ) }}
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+{% endmacro %}

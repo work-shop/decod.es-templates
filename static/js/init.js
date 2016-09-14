@@ -1,8 +1,8 @@
-"use script";
-
 var $ = require('jquery');
 
-module.exports = function() {
+module.exports = function( options ) {
+
+    require('./overlay.js')( options );
 
     try {
 
@@ -10,7 +10,7 @@ module.exports = function() {
             async: true,
             active: function() {
                 $(document).trigger('resources-loaded');
-                console.error('TypeKit resources loaded.');
+                console.log('TypeKit resources loaded.');
             },
             inactive: function() {
                 $(document).trigger('resources-loaded');
@@ -18,9 +18,6 @@ module.exports = function() {
                 console.error('TypeKit load error.');
             }
         });
-
-        console.log('hi');
-
 
     } catch(e) {
 

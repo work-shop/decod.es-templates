@@ -22,11 +22,17 @@
 </head>
 <body {% block body_attributes %}{% endblock %}>
 
-    {% include "/partials/header.html" %}
+    {% include "partials/header.html" %}
 
-	{% block content %}{% endblock %}
+    {% include "partials/menu.html" %}
 
-    {% include "/partials/footer.html" %}
+    {% include "partials/overlay.html" %}
+
+    <main>
+	   {% block content %}{% endblock %}
+    </main>
+
+    {% include "partials/footer.html" %}
 
 	{% block scripts_extra %}{% endblock %}
 

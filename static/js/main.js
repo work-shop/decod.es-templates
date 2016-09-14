@@ -1,1 +1,3 @@
-require('./init.js');
+require('./init.js')({
+    fadeTiming: 350
+});

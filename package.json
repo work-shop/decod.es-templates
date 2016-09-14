@@ -1,0 +1,33 @@
+{
+  "name": "decodes-templates",
+  "version": "1.0.0",
+  "description": "These are the view templates for the decodes project.",
+  "main": "static/js/main.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/work-shop/decod.es-templates.git"
+  },
+  "keywords": [
+    "templates",
+    "swig",
+    "decodes",
+    "static-sites",
+    "views",
+    "front-end"
+  ],
+  "author": "work-shop",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/work-shop/decod.es-templates/issues"
+  },
+  "homepage": "https://github.com/work-shop/decod.es-templates#readme",
+  "dependencies": {
+    "jquery": "^3.1.0"
+  }
+}

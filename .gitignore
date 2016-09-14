@@ -1,0 +1,9 @@
+# gitignore for the decodes templates
+
+# sass cache files
+.sass-cache
+
+# library files.
+node_modules
+static/scss/bourbon
+static/scss/neat

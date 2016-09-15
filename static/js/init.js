@@ -1,9 +1,13 @@
+"use strict";
+
 var $ = require('jquery');
 
 module.exports = function( options ) {
 
     require('./overlay.js')( options );
     require('./header.js')( options );
+    require('./menu.js')( options );
+    require('./search-interface.js')( options );
 
     try {
 
@@ -12,6 +16,7 @@ module.exports = function( options ) {
             active: function() {
                 $(document).trigger('resources-loaded');
                 console.log('TypeKit resources loaded.');
+                $(window).trigger('scroll');
             },
             inactive: function() {
                 $(document).trigger('resources-loaded');

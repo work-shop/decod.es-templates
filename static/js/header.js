@@ -37,14 +37,10 @@ module.exports = function( options ) {
             $('.nav-item').on('mouseover', function() {
                 var context = $( this );
 
-                console.log( timeouts );
-
                 if ( typeof timeouts[ context.attr('id') ] !== "undefined" ) {
                     clearTimeout( timeouts[ context.attr('id') ] );
                     timeouts[ context.attr('id') ] = undefined;
                 }
-
-                console.log( timeouts );
 
                 context.find('.nav-item-sublist').removeClass('hidden');
             });
@@ -58,7 +54,6 @@ module.exports = function( options ) {
 
                 }, options.mouseoutDebounce );
 
-                console.log( timeouts );
             });
         })();
 

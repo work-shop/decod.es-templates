@@ -1,0 +1,123 @@
+menu {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    overflow:scroll;
+    background-color: $body-white-color;
+    display: none;
+
+    z-index: $menu-z-index;
+
+    opacity:.96;
+
+    * {
+        opacity: 1;
+    }
+}
+
+
+.menu-input-region {
+    margin-top:10em;
+    margin-bottom:3em;
+}
+
+#search-input {
+    @extend .ocr-a-std;
+    @include span-columns( 12 of 12 );
+    outline:none;
+    border:0;
+    background-color: darken( $body-white-color, 5 );
+
+    border-bottom: $primary-division-width solid $body-dark-color;
+    padding:.5em;
+    padding-top: .7em;
+
+    font-size: 2em;
+
+    margin-bottom:.5em;
+}
+
+.examples-results {
+    @include span-columns( 4 of 12 );
+    list-style: none;
+}
+
+.documentation-results {
+    @include span-columns( 8 of 12 );
+    list-style: none;
+}
+
+.search-result {
+    padding:.5em;
+    padding-top: 1em;
+
+    margin-bottom: 1em;
+
+    .name {
+        margin-bottom: .5em;
+    }
+
+    .parent-tag {
+        color:$body-dark-color;
+    }
+
+    &:hover {
+        background-color: $body-brand-light-color;
+    }
+}
+
+.documentation-search-result {
+    @include span-columns( 4 of 8 );
+    @include omega(2n);
+
+    .documentation-result-text {
+        @include span-columns(3 of 4);
+    }
+
+    .result-source-icon {
+        @include span-columns( 1 of 4 );
+        position: relative;
+
+        span {
+            @extend .ocr-a-std;
+            @include border-radius( 25px );
+            display: block;
+            width:50px;
+            height:50px;
+            margin:0 auto;
+            padding-top:1em;
+
+            font-size:1.1em;
+
+            text-align: center;
+
+            color: $body-dark-color;
+            background-color:$body-light-color;
+
+
+
+        }
+
+    }
+
+    &:hover {
+        .result-source-icon span {
+            color: $body-white-color;
+            background-color:$body-dark-color;
+        }
+    }
+
+
+}
+
+.example-search-result {
+    @include span-columns( 4 of 4 );
+}
+
+
+
+body.fixed {
+    overflow:hidden;
+}

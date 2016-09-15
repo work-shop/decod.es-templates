@@ -20,12 +20,21 @@ header {
             color:$body-white-color;
         }
 
-
         .nav-item-search-prompt {
             color:$body-brand-color;
         }
     }
 
+}
+
+.menu-toggle {
+    &.active {
+        background-color: $body-brand-color;
+
+        .nav-item-link {
+            color:$body-white-color;
+        }
+    }
 }
 
 .nav-item-sublist {
@@ -70,7 +79,7 @@ header {
 
 }
 
-header[data-header-state="fixed"] {
+header[data-header-state="fixed"], header[data-header-state="search"] {
     @include span-columns(12 of 12);
 
     position:absolute;
@@ -87,6 +96,10 @@ header[data-header-state="fixed"] {
 
         margin-top:2em;
         padding:.5em;
+
+        &:last-child {
+            @include shift(4 of 12);
+        }
 
     }
 
@@ -122,17 +135,21 @@ header[data-header-state="free"] {
 
 }
 
+header[data-header-state="search"] {
+    position: fixed;
+}
+
 @include media-lg() {
     header[data-header-state="free"] {
         @include span-columns(5 of 12);
 
         right:(100% - $lg-containter-percentage) / 2;
-        top:(100% - $lg-containter-percentage);
+        top:(100% - $lg-containter-percentage) / 2;
 
         .nav-item {
             @include span-columns(3 of 12);
             position:relative;
-            min-height: 80px;
+            min-height: 40px;
 
             .nav-item-block {
                 @include center();
@@ -149,12 +166,12 @@ header[data-header-state="free"] {
         @include span-columns(6 of 12);
 
         right:(100% - $lg-containter-percentage) / 2;
-        top:(100% - $lg-containter-percentage);
+        top:(100% - $lg-containter-percentage) / 2;
 
         .nav-item {
             @include span-columns(3 of 12);
             position:relative;
-            min-height: 80px;
+            min-height: 40px;
 
             .nav-item-block {
                 @include center();
@@ -170,7 +187,7 @@ header[data-header-state="free"] {
         @include span-columns(6 of 12);
 
         right:(100% - $lg-containter-percentage) / 2;
-        top:(100% - $lg-containter-percentage);
+        top:(100% - $lg-containter-percentage) / 2;
     }
 }
 
@@ -179,6 +196,6 @@ header[data-header-state="free"] {
         @include span-columns(12 of 12);
 
         right:(100% - $lg-containter-percentage) / 2;
-        top:(100% - $lg-containter-percentage);
+        top:(100% - $lg-containter-percentage) / 2;
     }
 }

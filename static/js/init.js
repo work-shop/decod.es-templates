@@ -3,6 +3,7 @@ var $ = require('jquery');
 module.exports = function( options ) {
 
     require('./overlay.js')( options );
+    require('./header.js')( options );
 
     try {
 

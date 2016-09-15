@@ -3,8 +3,10 @@ $body-light-color: #cccccc;
 $body-dark-color: #353535;
 $body-black-color: #252525;
 $body-base-color: $body-black-color;
+$body-transition-duration:.5s;
 
 $body-brand-color:red;
+$body-brand-light-color:lighten($body-brand-color, 45);
 
 $body-font-size: 16px;
 
@@ -12,10 +14,16 @@ $lg-size: 1280px;
 $md-size: 950px;
 $sm-size: 540px;
 
+$lg-containter-percentage:90%;
+$md-containter-percentage:90%;
+$sm-containter-percentage:85%;
+$xs-containter-percentage:78%;
+
 $page-margin: 50px;
 
 $overlay-z-index:2000;
 $menu-z-index:1000;
+$sublist-menu-z-index:950;
 $header-z-index:750;
 $body-z-index:0;
 
@@ -63,6 +71,20 @@ $anchor-underline: 2px;
 }
 
 @mixin vertical-center() {
-    position:relative;
-    top:25%;
+    position:absolute;
+    top:50%;
+    @include transform( translateY( -50% ) );
+}
+
+@mixin horizontal-center() {
+    position:absolute;
+    left:50%;
+    @include transform( translateX( -50% ) );
+}
+
+@mixin center() {
+    position:absolute;
+    left:50%;
+    top:50%;
+    @include transform( translate( -50%, -50% ) );
 }

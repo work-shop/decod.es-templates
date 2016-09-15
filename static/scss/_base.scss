@@ -1,27 +1,35 @@
 @include media-lg {
     .region {
-        @include outer-container( 90% );
+        @include outer-container( $lg-containter-percentage );
         margin:0 auto;
     }
 }
 
 @include media-md {
     .region {
-        @include outer-container( 90% );
+        @include outer-container( $md-containter-percentage );
         margin:0 auto;
     }
 }
 
 @include media-sm {
     .region {
-        @include outer-container( 85% );
+        @include outer-container( $sm-containter-percentage );
         margin:0 auto;
     }
 }
 
 @include media-xs {
     .region {
-        @include outer-container( 78% );
+        @include outer-container( $xs-containter-percentage  );
         margin:0 auto;
     }
+}
+
+main {
+    padding-top:10em;
+}
+
+.hidden {
+    display:none !important;
 }

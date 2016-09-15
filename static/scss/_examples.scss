@@ -84,7 +84,7 @@
         }
 
         &:hover {
-            background-color: lighten($body-brand-color, 45);
+            background-color: $body-brand-light-color;
             .card-title span {
                 border-bottom: 2px solid $body-brand-color;
             }
@@ -124,12 +124,15 @@
     }
 
     a {
+        position:relative;
+        top:25%;
+
         @extend .ocr-a-std;
         font-size: .8em;
 
         color: $body-dark-color;
         border-bottom: 0;
-        @include vertical-center();
+
     }
 
 

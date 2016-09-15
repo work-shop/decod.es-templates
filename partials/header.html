@@ -1,1 +1,70 @@
-<header></header>
+<header data-header-state="fixed">
+    <nav class="primary-nav region">
+
+        <div class="nav-item {% if url( item ) == url( data ) %}active{% endif %}">
+            <a class="block nav-item-link" href="{{ url( data ) }}">
+                <div class="nav-item-block">
+                    <span class="nav-item-text">Home</span>
+                </div>
+            </a>
+        </div>
+
+        <div id="examples-nav-link" class="nav-item {% if url( item ) == url( data.examples ) %}active{% endif %}">
+            <a class="block nav-item-link" href="{{ url( data.examples ) }}">
+                <div class="nav-item-block">
+                    <span class="nav-item-text">Examples</span>
+                </div>
+            </a>
+
+            <ul class="nav-item-sublist hidden">
+                {% for example in data.examples.objects %}
+                    <li class="nav-item-sublist-item">
+                        <a class="nav-item-sublist-link" href="{% if url( item ) != url( data.examples ) %}{{ url( data.examples ) }}{% endif %}#{{ name( example )|lower|replace(' ', '-', 'g') }}">
+                            {{ title( name( example ) ) }}
+                        </a>
+                    </li>
+                {% endfor %}
+                {% for example in data.examples.processes %}
+                    <li class="nav-item-sublist-item">
+                        <a class="nav-item-sublist-link" href="{% if url( item ) != url( data.examples ) %}{{ url( data.examples ) }}{% endif %}#{{ name( example )|lower|replace(' ', '-', 'g') }}">
+                            {{ title( name( example ) ) }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+    <div id="decodes-nav-link" class="nav-item {% if url( item ) == url( data.decodes ) %}active{% endif %}">
+            <a class="block nav-item-link" href="{{ url( data.decodes ) }}">
+                <div class="nav-item-block">
+                    Documentation
+                </div>
+            </a>
+
+            <ul class="nav-item-sublist hidden">
+                <li class="nav-item-sublist-item">
+            <a class="nav-item-sublist-link" href="{% if url( item ) != url( data.decodes ) %}{{ url( data.decodes ) }}{% endif %}#core">
+                        Core
+                    </a>
+                </li>
+                {% for obj in data.decodes.extensions %}
+                    <li class="nav-item-sublist-item">
+                <a class="nav-item-sublist-link" href="{% if url( item ) != url( data.decodes ) %}{{ url( data.decodes ) }}{% endif %}#{{ name( obj )|lower|replace(' ', '-', 'g') }}">
+                            {{ title( name( obj ) ) }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="nav-item">
+        <a class="block nav-item-link" href="#">
+            <div class="nav-item-block">
+                Search
+            </div>
+        </a>
+        </div>
+
+    </nav>
+</header>

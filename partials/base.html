@@ -26,13 +26,13 @@
 
     {% include "partials/menu.html" %}
 
-    {% include "partials/overlay.html" %}
-
     <main>
 	   {% block content %}{% endblock %}
     </main>
 
     {% include "partials/footer.html" %}
+
+    {% include "partials/overlay.html" %}
 
 	{% block scripts_extra %}{% endblock %}
 

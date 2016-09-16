@@ -1,0 +1,81 @@
+{# this macro renders the table of contents for the examples #}
+{% macro tableOfContents( item ) %}
+    <div class="contents-label hidden"><h3><span>Example Categories</span></h3></div>
+    <ul class="example-contents contents">
+        <li class="example-contents-item contents-item">
+            <a data-unfold-trigger="#core" href="#core">Core</a>
+        </li>
+        {% for object in sortByKey( 'definedIn', item.extensions ) %}
+
+            <li class="example-contents-item contents-item">
+                <a data-unfold-trigger="#{{ convertFilename( loop.key) }}" href="#{{ convertFilename( loop.key ) }}">{{ title( convertFilename( loop.key ) ) }}</a>
+            </li>
+
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{# this macro renders the header for examples #}
+{% macro header( item ) %}
+    <div class="example-header header">
+        <div class="header-text-box">
+            <h1 class="example-title title">Documentation</h1>
+            <p class="example-header-section-description header-section-description">
+                Browse the library's documentation for information about the source code. Decodes is a
+                continuously evolving community project, and we're working to improve the documentation all the time.
+                If you have a suggestion for how a class or method's documentation could be improved,
+                <a href="http://github.com/ksteinfe/decodes">fork the repository</a>, make the change,
+                and submit a pull request!
+            </p>
+        </div>
+
+        {{ tableOfContents( item ) }}
+
+    </div>
+{% endmacro %}
+
+{# this macro renders the header for examples #}
+{% macro division( name, filter ) %}
+    <div class="documentation-division division" data-filter="{{ filter }}">
+        <h4 class="documentation-division-label division-label">{{ name }}</h4>
+        <span class="documentation-division-fold-icon division-fold-icon">&#9654;</span>
+    </div>
+{% endmacro %}
+
+{# this macro renders a card for an examples #}
+{% macro card( doc ) %}
+    <li class="documentation-card card">
+        <a href="{{ url( doc ) }}">
+            <div class="documentation-card-icon">
+                <h3 class="documentation-card-icon-field">
+                    <span>{{ condense( name( doc ) ) }}</span>
+                </h3>
+            </div>
+            <div class="documentation-card-text">
+                <h3><span>{{ name( doc ) }}</span></h3>
+                <p class="method-count">0 documentated methods.</p>
+            </div>
+        </a>
+    </li>
+{% endmacro %}
+
+{# this macro renders a section of examples. it chains together the examples and division cards #}
+{% macro section( named, contents, state, filter ) %}
+
+    <div id="{{ named|replace('-', ' ', 'g') }}" class="documentation-list content-list" data-fold-state="{{ state }}">
+
+        {{ division( title( named ), filter ) }}
+
+        <ul class="classes-in-section children-in-section">
+
+            {% for document in contents %}
+
+                {{ card( document ) }}
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+{% endmacro %}

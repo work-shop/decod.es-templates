@@ -1,31 +1,31 @@
 {% extends "partials/base.html" %}
 
+{% import "partials/documentation.html" as docs %}
+
+{% block body-attributes %}class="documentation-home"{% endblock %}
+
 {% block content %}
 
-<h1>This is the source/index.html template</h1>
+    <section class="region">
 
-<ul>
+        {{ docs.header( item ) }}
 
-	{% for partition in item %}
+    </section>
 
-	<li class="source-module">
+    <section class="region">
 
-		<h2>{{ name( partition ) }}</h2>
+        {% set state = "open" %}
 
-		<ul class="source-classes">
+        {{ docs.section( "core", item.core, state ) }}
 
-		{% for object in partition %}
+        {% set state = "open" %}
 
-			<li class="source-class"><a href="{{ url( object ) }}">{{ name( object ) }}</a></li>		
+        {% for object in sortByKey( 'definedIn', item.extensions ) %}
 
-		{% endfor %}
+            {{ docs.section( convertFilename( loop.key ), object, state ) }}
 
-		</ul>
+        {% endfor %}
 
-	</li>
-
-	{% endfor %}
-</ul>
-
+    </section>
 
 {% endblock %}

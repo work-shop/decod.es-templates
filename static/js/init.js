@@ -8,6 +8,7 @@ module.exports = function( options ) {
     require('./header.js')( options );
     require('./menu.js')( options );
     require('./search-interface.js')( options );
+    require('./fold.js')( options );
 
     try {
 

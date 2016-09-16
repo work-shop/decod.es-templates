@@ -23,12 +23,7 @@ function walkDataTree( data, isTerminal ) {
     return documents;
 }
 
-function label( x, i ) {
-    x.cid = i;
-
-    return x;
-}
-
+function label( x, i ) { x.cid = i; return x; }
 
 module.exports = function Searcher( data, options ) {
     if ( !( this instanceof Searcher ) ) { return new Searcher( data ); }
@@ -59,6 +54,8 @@ module.exports = function Searcher( data, options ) {
                 }
             });
         }
+
+        references.push( documentation._parent );
 
         return {
             sourceDocument: documentation,
@@ -94,6 +91,8 @@ module.exports = function Searcher( data, options ) {
                 }
             }
         }
+
+        references.push( example._parent );
 
         return {
             sourceDocument: example,
@@ -132,9 +131,6 @@ module.exports = function Searcher( data, options ) {
 
     var examples = walkDataTree( data.examples, isTerminalExampleObject ).map( formatExampleAsDocument );
     var documentation = walkDataTree( data.decodes, isTerminalDocumentationObject ).map( formatDocumentationAsDocument );
-
-    console.log( examples );
-
     var documents = examples.concat( documentation ).map( label );
 
     var index = lunr( function() {

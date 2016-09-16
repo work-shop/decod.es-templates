@@ -9,6 +9,7 @@ module.exports = function( options ) {
     require('./menu.js')( options );
     require('./search-interface.js')( options );
     require('./fold.js')( options );
+    require('./scroll.js')( options );
 
     try {
 

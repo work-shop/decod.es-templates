@@ -39,7 +39,24 @@ module.exports = function( options ) {
     $( document ).ready( function () {
 
         $('[data-fold-state="open"]').children('.division').on('click', transitionTo('closed') );
-        //$('[data-fold-state="closed"]').children('.division').on('click', transitionTo('open') );
+        transition('open', $('[data-fold-state="open"]').children('.examples-in-section'));
+
+        $('[data-fold-state="closed"]').children('.division').on('click', transitionTo('open') );
+        transition('closed', $('[data-fold-state="closed"]').children('.examples-in-section'));
+
+        $('[data-unfold-trigger]').on('click', function() {
+
+            $('[data-fold-state]').attr('data-fold-state', 'closed' );
+            transition( 'closed', $('[data-fold-state]').children('.examples-in-section') );
+
+            $('[data-fold-state="closed"]').children('.division').off('click');
+            $('[data-fold-state="closed"]').children('.division').on('click', transitionTo('open') );
+
+
+            $( $(this).attr('data-unfold-trigger') ).attr('data-fold-state', 'open');
+            $( $(this).attr('data-unfold-trigger') ).children('.division').on('click', transitionTo('closed') );
+            transition('open', $( $(this).attr('data-unfold-trigger') ).children('.examples-in-section'));
+        });
 
     });
 

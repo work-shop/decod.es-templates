@@ -1,20 +1,58 @@
-{# this macro renders the header for examples #}
-{% macro header() %}
-    <div class="example-header header">
-        <h1 class="example-title">Examples</h1>
-    </div>
-{% endmacro %}
-
 {# this macro renders the navigation bar for examples #}
-{% macro nav() %}
+{% macro nav( item ) %}
     <div class="example-nav nav">
+        <div class="filter-choices">
+            <div class="filter-label">
+                <a class="block filter-button">Filter By:</a>
+            <div>
+            <div class="filter-choice active" data-filter="category">
+                <a class="block filter-button">Category</a>
+            </div>
+            <div class="filter-choice" data-filter="reference">
+                <a class="block filter-button">Reference</a>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{# this macro renders the table of contents for the examples #}
+{% macro tableOfContents( item ) %}
+    <div class="contents-label hidden"><h3><span>Example Categories</span></h3></div>
+    <ul class="example-contents contents">
+        {% for section in item.objects %}
+            <li class="example-contents-item contents-item">
+                <a href="#{{ name( section ) }}">{{ title( name( section ) ) }}</a>
+            </li>
+        {% endfor %}
+        {% for section in item.processes %}
+            <li class="example-contents-item contents-item">
+                <a href="#{{ name( section ) }}">{{ title( name( section ) ) }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{# this macro renders the header for examples #}
+{% macro header( item ) %}
+    <div class="example-header header">
+        <div class="header-text-box">
+            <h1 class="example-title title">Examples</h1>
+            <p class="example-header-section-description header-section-description">
+                This collection of examples showcases different uses of the decodes library.
+                This set is a community curated collection. You can contribute to it by forking <a href="http://path-to-example-git-repo.com/">this
+                git repository</a>, adding and example, and making a pull request.
+            </p>
+        </div>
+
+        {{ tableOfContents( item ) }}
+
     </div>
 {% endmacro %}
 
 {# this macro renders the header for examples #}
-{% macro division( name ) %}
-    <div class="example-division division">
-        <h4 class="example-division-label division-label">{{ title( name ) }}</h4>
+{% macro division( name, filter ) %}
+    <div class="example-division division" data-filter="{{ filter }}">
+        <h4 class="example-division-label division-label">{{ name }}</h4>
         <span class="example-division-fold-icon division-fold-icon">&#9654;</span>
     </div>
 {% endmacro %}
@@ -43,11 +81,11 @@
 {% endmacro %}
 
 {# this macro renders a section of examples. it chains together the examples and division cards #}
-{% macro section( contents, state ) %}
+{% macro section( contents, state, filter ) %}
 
     <div id="{{ name( contents )|replace('-', ' ', 'g') }}" class="examples-list content-list" data-fold-state="{{ state }}">
 
-        {{ division( name( contents ) ) }}
+        {{ division( title( name( contents ) ), filter ) }}
 
         <ul class="examples-in-section">
 

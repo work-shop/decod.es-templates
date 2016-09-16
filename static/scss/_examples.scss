@@ -4,7 +4,60 @@
     @include span-columns(12 of 12);
     @include omega();
 
-    height:50vh;
+    min-height:50vh;
+    margin-bottom:4em;
+}
+
+.header-text-box {
+    @include span-columns(12 of 12);
+}
+
+.title {
+    @include span-columns(12 of 12);
+    text-align:center;
+}
+
+.header-section-description {
+    @include span-columns(6 of 12 );
+    @include shift(3 of 12);
+    margin-bottom: 2em;
+
+}
+
+.contents-label {
+    @include span-columns(6 of 12 );
+    @include shift(3 of 12);
+    text-align: center;
+    margin-bottom: 1em;
+
+    h2 span {
+        border-bottom: $primary-division-width solid $body-dark-color;
+    }
+}
+
+.example-contents {
+    @include span-columns(6 of 12 );
+    @include shift(3 of 12);
+
+}
+
+.example-contents-item {
+    @include span-columns(2 of 6);
+    @include omega( 3n  );
+    margin-bottom:2em;
+
+    text-align: center;
+
+    a {
+        color:$body-dark-color;
+        border-color: $body-dark-color;
+    }
+
+    a:hover {
+        color:$body-brand-color;
+        border-color: $body-brand-color;
+    }
+
 }
 
 /** ---- examples navigation ---- */
@@ -33,6 +86,7 @@
     position: absolute;
     left: -30px;
     top:0px;
+    @include transition( transform, $body-transition-duration / 2 );
 }
 
 [data-fold-state="open"] .division-fold-icon {

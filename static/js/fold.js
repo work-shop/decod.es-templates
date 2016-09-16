@@ -30,7 +30,7 @@ function transitionTo( state ) {
         $(this).off( 'click' );
         $(this).on('click', transitionTo( inverse( state ) ) );
 
-        transition( state, $(this).parent('[data-fold-state]').children('.examples-in-section') );
+        transition( state, $(this).parent('[data-fold-state]').children('.children-in-section') );
 
     };
 }
@@ -39,15 +39,15 @@ module.exports = function( options ) {
     $( document ).ready( function () {
 
         $('[data-fold-state="open"]').children('.division').on('click', transitionTo('closed') );
-        transition('open', $('[data-fold-state="open"]').children('.examples-in-section'));
+        transition('open', $('[data-fold-state="open"]').children('.children-in-section'));
 
         $('[data-fold-state="closed"]').children('.division').on('click', transitionTo('open') );
-        transition('closed', $('[data-fold-state="closed"]').children('.examples-in-section'));
+        transition('closed', $('[data-fold-state="closed"]').children('.children-in-section'));
 
         $('[data-unfold-trigger]').on('click', function() {
 
             $('[data-fold-state]').attr('data-fold-state', 'closed' );
-            transition( 'closed', $('[data-fold-state]').children('.examples-in-section') );
+            transition( 'closed', $('[data-fold-state]').children('.children-in-section') );
 
             $('[data-fold-state="closed"]').children('.division').off('click');
             $('[data-fold-state="closed"]').children('.division').on('click', transitionTo('open') );
@@ -55,7 +55,7 @@ module.exports = function( options ) {
 
             $( $(this).attr('data-unfold-trigger') ).attr('data-fold-state', 'open');
             $( $(this).attr('data-unfold-trigger') ).children('.division').on('click', transitionTo('closed') );
-            transition('open', $( $(this).attr('data-unfold-trigger') ).children('.examples-in-section'));
+            transition('open', $( $(this).attr('data-unfold-trigger') ).children('.children-in-section'));
         });
 
     });

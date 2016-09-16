@@ -8,6 +8,12 @@ $body-transition-duration:.5s;
 $body-brand-color:red;
 $body-brand-light-color:lighten($body-brand-color, 45);
 
+$body-header-color:$body-brand-color;
+$body-header-light-color:$body-brand-light-color;
+
+$body-header-color:blue;
+$body-header-light-color:lighten($body-header-color, 45);
+
 $body-font-size: 16px;
 
 $lg-size: 1280px;

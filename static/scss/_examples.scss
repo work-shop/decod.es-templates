@@ -74,6 +74,14 @@
     padding-bottom: .5em;
     border-bottom: $primary-division-width solid $body-dark-color;
     margin-bottom: 1.5em;
+
+    cursor:pointer;
+
+    &:hover {
+        .division-fold-icon {
+            color:$body-brand-color;
+        }
+    }
 }
 
 .division-label {

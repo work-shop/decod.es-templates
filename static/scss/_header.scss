@@ -1,27 +1,31 @@
 header {
     @include transition( all, $body-transition-duration );
     z-index: $header-z-index;
+
+    a {
+        color: $body-header-color;
+    }
 }
 
 .nav-item {
-    background-color: $body-brand-light-color;
+    background-color: $body-header-light-color;
     text-align: center;
     border-bottom: 0;
 
     &.active {
-        background-color: $body-brand-light-color;
-        border:$primary-division-width solid $body-brand-color;
+        background-color: $body-header-light-color;
+        border:$primary-division-width solid $body-header-color;
     }
 
     &:hover {
-        background-color: $body-brand-color;
+        background-color: $body-header-color;
 
         .nav-item-link {
             color:$body-white-color;
         }
 
         .nav-item-search-prompt {
-            color:$body-brand-color;
+            color:$body-header-color;
         }
     }
 
@@ -29,7 +33,7 @@ header {
 
 .menu-toggle {
     &.active {
-        background-color: $body-brand-color;
+        background-color: $body-header-color;
 
         .nav-item-link {
             color:$body-white-color;
@@ -40,7 +44,7 @@ header {
 .nav-item-sublist {
 
     background-color: $body-white-color;
-    border: $primary-division-width solid $body-brand-color;
+    border: $primary-division-width solid $body-header-color;
 
     z-index: $sublist-menu-z-index;
 
@@ -51,7 +55,7 @@ header {
     .nav-item-sublist-item {
         @include span-columns(1 of 1);
 
-        border-bottom: $primary-division-width solid $body-brand-color;
+        border-bottom: $primary-division-width solid $body-header-color;
         padding-top:.5em;
         padding-bottom:.5em;
 
@@ -60,7 +64,7 @@ header {
         }
 
         &:hover {
-            background-color: $body-brand-light-color;
+            background-color: $body-header-light-color;
         }
 
         &:last-child {
@@ -88,7 +92,7 @@ header[data-header-state="fixed"], header[data-header-state="search"] {
 
     width:100%;
 
-    border-top: 2*$primary-division-width solid $body-brand-color;
+    border-top: 2*$primary-division-width solid $body-header-color;
 
     .nav-item {
         @include span-columns(2 of 12);
@@ -122,7 +126,7 @@ header[data-header-state="free"] {
     position:fixed;
 
     .nav-item {
-        border-top: 2*$primary-division-width solid $body-brand-color;
+        border-top: 2*$primary-division-width solid $body-header-color;
     }
 
     .nav-item-sublist {

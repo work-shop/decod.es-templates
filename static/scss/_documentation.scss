@@ -1,0 +1,64 @@
+.children-in-section {
+    margin-top: 5em;
+}
+
+.documentation-card {
+
+    margin-bottom:2.5em;
+}
+
+.documentation-card:hover {
+    .documentation-card-icon h3 {
+        background-color: $body-base-color;
+
+        span {
+            color: $body-white-color;
+        }
+    }
+
+    .documentation-card-text {
+        h3 span {
+            border-bottom: $primary-division-width solid $body-brand-color;
+        }
+    }
+}
+
+.documentation-card-icon {
+    @include span-columns( 1 of 4 );
+
+    h3 {
+        position: relative;
+        background-color: $body-light-color;
+        height:60px;
+        width:60px;
+        margin: 0 auto;
+
+        text-align: center;
+
+        @include border-radius( 30px );
+
+        span {
+            @include center();
+            color:$body-base-color;
+        }
+
+    }
+
+
+
+}
+
+.documentation-card-text {
+    @include span-columns( 3 of 4 );
+
+    h3 {
+        margin-bottom: .5em;
+    }
+
+    .method-count {
+        color:$body-base-color;
+    }
+
+
+
+}

@@ -21,12 +21,12 @@
     <ul class="example-contents contents">
         {% for section in item.objects %}
             <li class="example-contents-item contents-item">
-                <a data-unfold-trigger="#{{ name( section ) }}" href="#{{ name( section ) }}">{{ title( name( section ) ) }}</a>
+                <a class="local" data-unfold-trigger="#{{ name( section ) }}" href="#{{ name( section ) }}">{{ title( name( section ) ) }}</a>
             </li>
         {% endfor %}
         {% for section in item.processes %}
             <li class="example-contents-item contents-item">
-                <a data-unfold-trigger="#{{ name( section ) }}" href="#{{ name( section ) }}">{{ title( name( section ) ) }}</a>
+                <a class="local" data-unfold-trigger="#{{ name( section ) }}" href="#{{ name( section ) }}">{{ title( name( section ) ) }}</a>
             </li>
         {% endfor %}
     </ul>

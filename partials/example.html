@@ -1,0 +1,140 @@
+{% macro images( imageSet ) %}
+    {% if imageSet %}
+        <div class="example-header-images image-set-{{ imageSet|size }}">
+        {% for image in imageSet %}
+            <figure class="example-header-image">
+                <img class="header-image" src="{{ asset( loop.key ) }}" alt="{{ image }}" />
+                <figcaption>{{ image }}</figcaption>
+            </figure>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro header( item ) %}
+    <div class="example-header">
+        <h4 class="example-type content-type">Example</h4>
+        <h1 class="example-title title">{{ title( name( item ) ) }}</h1>
+        <ul class="example-git-urls">
+        {% for obj in item %}
+            <li class="example-git-url">
+                <div class="inner-link">
+                    <a class="local" href="#{{ name( obj )|lower|replace('\.', '-', 'g') }}">
+                        {{ name( obj ) }}
+                    </a>
+                </div>
+                <div class="git-link">
+                    <a href="{{ obj.giturl }}">
+                        View {{ name( obj ) }} on GitHub.
+                    </a>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <script>console.log( {{ extractExampleImages( item )|json|safe }} )</script>
+
+        {{ images( extractExampleImages( item ) ) }}
+
+    </div>
+{% endmacro %}
+
+{% macro division( name ) %}
+    <div class="example-division division">
+        <h4 class="example-division-label division-label">{{ name }}</h4>
+    </div>
+{% endmacro %}
+
+{% macro sectionBlock( blk ) %}
+
+    <div class="example-section-block">
+        {% set trimmed = blk.description.trim() %}
+
+        {% if trimmed != "" %}
+            <div class="section-block-description">
+                <p>{{ blk.description }}</p>
+            </div>
+        {% endif %}
+
+        <div class="section-block-code {% if trimmed == "" %}wide{% endif %}">
+            <pre class="code-line sh_python">
+            {% for line in blk.code.content %}
+                {% if line.trim() != "" %}{{ resolve( line ) }}{% endif %}
+            {% endfor %}
+            </pre>
+        </div>
+    </div>
+
+{% endmacro %}
+
+{% macro required( label, obj ) %}
+    {% if obj %}
+
+        <div class="example-section-required">
+            <h4>{{ label }}{{ obj|pluralize('s') }}</h4>
+            <div class="requirements">
+            {% for requirement in obj %}
+                <p class="requirement">{{ resolve( requirement ) }}</p>
+            {% endfor %}
+            </div>
+        </div>
+
+    {% endif %}
+{% endmacro %}
+
+
+
+{% macro result( label, obj ) %}
+
+    {% if obj %}
+
+        <div class="example-section-result">
+            <h4>{{ label }}{{ obj|pluralize('s') }}</h4>
+            <div class="results">
+            {% for result in obj %}
+                <p class="result">{{ resolve( result ) }}</p>
+            {% endfor %}
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endmacro %}
+
+
+
+{% macro section( item ) %}
+    <div id="{{ name( item )|lower|replace('\.', '-', 'g') }}" class="example-section">
+
+        {{ division( name( item ) ) }}
+
+        <div class="example-section-header-region">
+            {% if item.documentation & item.documentation.description %}
+                <div class="example-section-header {% if (!item.required && !item.result) && (!item.members && !item.methods) %}wide{% endif%}">
+                    {% for line in item.documentation.description|rest %}
+                        <p class="example-section-header-line"> {{ line }} </p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="example-section-requirements-results">
+
+                {{ required( 'requirement', item.required ) }}
+
+                {{ result( 'result', item.required ) }}
+
+                {{ required( 'member', item.members ) }}
+
+                {{ result( 'method', item.methods ) }}
+
+            </div>
+        </div>
+
+        {% for blk in item.blocks %}
+
+            {{ sectionBlock( blk ) }}
+
+        {% endfor %}
+
+    </div>
+{% endmacro %}

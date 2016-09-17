@@ -3,12 +3,12 @@
     <div class="contents-label hidden"><h3><span>Example Categories</span></h3></div>
     <ul class="example-contents contents">
         <li class="example-contents-item contents-item">
-            <a data-unfold-trigger="#core" href="#core">Core</a>
+            <a class="local" data-unfold-trigger="#core" href="#core">Core</a>
         </li>
         {% for object in sortByKey( 'definedIn', item.extensions ) %}
 
             <li class="example-contents-item contents-item">
-                <a data-unfold-trigger="#{{ convertFilename( loop.key) }}" href="#{{ convertFilename( loop.key ) }}">{{ title( convertFilename( loop.key ) ) }}</a>
+                <a class="local" data-unfold-trigger="#{{ convertFilename( loop.key) }}" href="#{{ convertFilename( loop.key ) }}">{{ title( convertFilename( loop.key ) ) }}</a>
             </li>
 
         {% endfor %}

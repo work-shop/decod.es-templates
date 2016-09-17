@@ -1,0 +1,149 @@
+.class-header {
+    @include span-columns(12 of 12);
+}
+
+.class-type {
+    text-align: center;
+    margin-bottom:1em;
+    text-transform: uppercase;
+}
+
+.class-documentation {
+    @include span-columns(6 of 12);
+    @include shift(3 of 12);
+
+    margin-bottom:1em;
+}
+
+.class-documentation-string::first-letter {
+    text-transform: capitalize;
+}
+
+.class-table-of-contents {
+    @include span-columns(12 of 12);
+
+    text-align:center;
+    margin-bottom: 4em;
+
+    .class-member-category {
+        @include span-columns( 12 of 12 );
+    }
+
+    &.contents-width-1 .class-member-category {
+        @include span-columns( 6 of 12 );
+        @include shift(3 of 12);
+        
+        .class-member-list {
+            @include span-columns( 2 of 2 );
+
+            .class-member {
+                @include span-columns( 1 of 2 );
+                @include omega(2n);
+            }
+        }
+
+    }
+
+    &.contents-width-2 .class-member-category {
+        @include span-columns( 6 of 12 );
+
+    }
+
+    &.contents-width-3 .class-member-category {
+        @include span-columns( 4 of 12 );
+
+    }
+}
+
+
+
+.class-member-heading {
+    font-weight: bold;
+    text-transform: uppercase;
+
+    margin-bottom:2em;
+}
+
+.class-member {
+    margin-bottom:1em;
+
+
+}
+
+
+
+
+.class-method-definition {
+    @include span-columns(12 of 12);
+
+    margin-bottom:4em;
+
+    .method-type {
+        @include span-columns( 2 of 12 );
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: .5em;
+    }
+
+    .method-definition-body {
+        @include span-columns( 10 of 12 );
+    }
+
+}
+
+.method-declaration {
+    margin-bottom:1.5em;
+}
+
+.parameter-symbol {
+    color:$body-medium-color;
+}
+
+.method-description {
+    border-bottom: $secondary-division-width solid $body-light-color;
+
+}
+
+.method-input-output {
+    @include span-columns( 11 of 11 );
+
+    padding:1em;
+    padding-top:1.5em;
+    background-color: $body-ultralight-color;
+
+    .method-parameters, .method-return {
+        @include span-columns( 11 of 11 );
+
+        .method-parameter, .method-result {
+            @include span-columns( 11 of 11 );
+
+            margin-bottom: 2em;
+
+            .parameter-name, .result-label {
+                @include span-columns( 2 of 11 );
+
+            }
+
+            .parameter-type, .result-type {
+                @include span-columns( 2 of 11 );
+            }
+
+            .parameter-description, .result-description {
+                @include span-columns( 7 of 11 );
+            }
+
+            .result-label h4 {
+                text-transform: uppercase;
+                font-weight: bold;
+                margin-top: .5em;
+            }
+
+            .parameter-name p {
+                font-style: italic;
+            }
+
+        }
+
+    }
+
+}

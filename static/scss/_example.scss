@@ -142,6 +142,7 @@
         @extend .bold;
         @include span-columns(2 of 8);
         padding-top: .5em;
+        text-transform: uppercase;
 
     }
 

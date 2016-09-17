@@ -1,0 +1,135 @@
+{% import 'partials/text.html' as text %}
+
+{% macro tableOfContents( item ) %}
+    {% set categories = sortByKey( 'decorator', item.definitions ) %}
+    <div class="class-table-of-contents contents-width-{{ categories|size - 1 }}">
+    {% for category in categories %}
+        <div class="class-member-category">
+            {% if loop.key != "constructor" %}
+            <h4 class="class-member-heading">{{ loop.key }}</h4>
+            <ul class="class-member-list">
+                {% for method in category %}
+                    <li class="class-member">
+                        <a class="local" href="#{{ method.name }}">
+                            {{ method.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+{% endmacro %}
+
+
+
+{% macro header( item ) %}
+    <div class="class-header">
+        <h4 class="class-type content-type">Class</h4>
+        <h1 class="class-title title">{{ name( item ) }}</h1>
+        {% if item.documentation.description %}
+            <div class="class-documentation">
+            {% for line in item.documentation.description %}
+                {% if line.toLowerCase() === "null" %}
+                    {{ text.undocumentedClass( item.giturl ) }}
+                {% else %}
+                <p class="class-documentation-string">
+                    {{ line }}
+                </p>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        {{ tableOfContents( item ) }}
+
+    </div>
+
+{% endmacro %}
+
+{% macro signature( definition ) %}
+    <h3 class="method-declaration">
+    <span class=method-name>{{ definition.name }}</span>
+    {% if definition.documentation.parameters || definition.documentation.types || definition.documentation.rtype || definition.documentation.rvalue %}
+        :
+        {% if definition.documentation.parameters & definition.documentation.types %}
+            {% set len = definition.documentation.parameters|size %}
+            <span class="parameter-symbol">(</span>
+            {% for parameter in definition.documentation.parameters %}
+            <span class="parameter">{{ resolve( loop.key ) }}<span>{% if loop.index < len %}<span class="parameter-symbol">,</span> {% endif %}
+            {% endfor %}
+            <span class="parameter-symbol">)</span>
+            <span class="parameter-symbol">&rarr;</span>
+        {% endif %}
+        {% if definition.documentation.rtype & definition.documentation.rvalue %}
+            {{ resolve( definition.documentation.rtype ) }}
+        {% endif %}
+
+    {% endif %}
+    </h3>
+{% endmacro %}
+
+{% macro inputOutputTable( definition, item ) %}
+    {% if definition.documentation.parameters || definition.documentation.types || definition.documentation.rtype || definition.documentation.rvalue %}
+    <div class="method-input-output">
+        {% if definition.documentation.rtype & definition.documentation.rvalue %}
+            <div class="method-parameters">
+                {% for description in definition.documentation.parameters %}
+                    <div class="method-parameter">
+                        <div class="parameter-name">
+                            <p>{{ loop.key }}</p>
+                        </div>
+                        <div class="parameter-type">
+                            <p>{{ resolve( definition.documentation.types[ loop.key ] ) }}</p>
+                        </div>
+                        <div class="parameter-description">
+                            <p>{{ description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if definition.documentation.rtype & definition.documentation.rvalue %}
+            <div class="method-return">
+                <div class="method-result">
+                    <div class="result-label">
+                        <h4>Returns</h4>
+                    </div>
+                    <div class="result-type">
+                        <p>{{ resolve( definition.documentation.rtype ) }}</p>
+                    </div>
+                    <div class="result-description">
+                        <p>{{ definition.documentation.rvalue }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro method( definition, item ) %}
+    <div id="{{ definition.name }}" class="class-method-definition">
+        <div class="method-type">
+            <h4>{{ definition.decorator }}</h4>
+        </div>
+        <div class="method-definition-body">
+            <div class="method-signature">
+                {{ signature( definition ) }}
+            </div>
+            {% if definition.documentation %}
+                <div class="method-description">
+                    {{ text.formatDocumentationLines( definition.documentation.description, 'method', item.giturl ) }}
+                </div>
+
+                {{ inputOutputTable( definition, item ) }}
+
+            {% else %}
+
+                {{ text.undocumentedMethod( item.giturl ) }}
+
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}

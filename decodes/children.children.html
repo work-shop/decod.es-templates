@@ -1,93 +1,34 @@
 {% extends "partials/base.html" %}
 
+{% import 'partials/class.html' as clss %}
+{% import 'partials/text.html' as text %}
+
 {% block content %}
 
-<h1 class="source-name">{{ name( item ) }}</h1>
+    <div class="class-header-region region">
 
-<h2 class="source-documentation">{{ item.documentation }}</h2>
+        {{ clss.header( item ) }}
 
-<pre><code>{{ item.definedIn }}</code></pre>
+    </div>
 
+    {% if item.definitions %}
 
-{% if item.references %}
+        <div class="class-methods-region region">
 
-<div class="source-references">
-	{% if item.references.classes %}
-	<ul class="source-references-classes">
-		{% for amount in item.references.classes %}
-			<li class="">{{ loop.key }} – {{ amount }} Time(s).</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
-	{% if item.references.functions %}
-	<ul class="source-references-functions">
-		{% for amount in item.references.functions %}
-			<li class="">{{ loop.key }} – {{ amount }} Time(s).</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
-</div>
+            {% for method in item.definitions %}
 
-{% endif %}
+                {{ clss.method( method, item ) }}
 
+            {% endfor %}
 
-{% if item.definitions %}
+        </div>
 
-<ul class="source-references">
+    {% else %}
 
-	{% for definition in item.definitions %}
-	
-	<li class="source-definition">
-		<h3 class="definition-name">{{ definition.name }}</h3>
-		{% if definition.documentation %}
+        <div class="class-methods-region no-methods region">
+            No methods.
+        </div>
 
-		
-			{% if definition.documentation.description %}
-
-				{% for line in definition.documentation.description %}
-
-					<p>{{ resolve( line ) }}</p>
-
-				{% endfor %}
-
-			{% endif %}
-
-			{% if definition.documentation.parameters and definition.documentation.types %}
-
-				{% for param in definition.documentation.parameters %}
-					
-					<p>
-						<bold>parameter</bold>
-						<span class="parameter-description">{{ loop.key }}</span>
-						<span class="parameter-type">{{ resolve( definition.documentation.types[ loop.key ] ) }}</span>
-						<span class="parameter-description">{{ resolve( param ) }}</span>
-					</p>
-
-				{% endfor %}
-
-			{% endif %}
-
-			{% if definition.documentation.rvalue and definition.documentation.rtype %}
-					
-					<p>
-						<bold>return</bold>
-						<span class="return-type">{{ resolve( definition.documentation.rtype ) }}</span>
-						<span class="return-description">{{ resolve( definition.documentation.rvalue ) }}</span>
-					</p>
-
-			{% endif %}
-
-
-		
-
-		{% endif %}
-
-	</li>
-
-	{% endfor %}
-
-</ul>
-
-{% endif %}
+    {% endif %}
 
 {% endblock %}

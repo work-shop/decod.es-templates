@@ -1,0 +1,23 @@
+{% extends "partials/base.html" %}
+
+{% import "partials/example.html" as example %}
+
+{% block content %}
+
+    <section class="example-header-region region">
+
+        {{ example.header( item ) }}
+
+    </section>
+
+    <section class="example-body-region region">
+
+        {% for sect in item %}
+
+            {{ example.section( sect ) }}
+
+        {% endfor %}
+
+    </section>
+
+{% endblock %}

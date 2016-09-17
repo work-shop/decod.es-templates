@@ -1,0 +1,22 @@
+.code-line {
+    @extend .ff-meta;
+    @include span-columns(8 of 8);
+
+    font-size: 1em;
+    letter-spacing: .02em;
+
+    background-color: $body-light-color;
+
+}
+
+.sh_sourceCode a {
+
+    .sh_function {
+        color:$body-brand-color !important;
+    }
+
+    .sh_comment {
+        color:$body-brand-color !important;
+    }
+
+}

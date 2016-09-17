@@ -66,6 +66,31 @@ a {
     color:$body-brand-color;
     text-decoration: none;
     border-bottom: $anchor-underline solid $body-brand-color;
+
+    &:hover {
+        background-color: $body-brand-light-color;
+    }
+}
+
+a.local {
+    color:$body-dark-color;
+    text-decoration: none;
+    border-bottom: $anchor-underline solid $body-dark-color;
+
+    &:hover {
+        color: $body-brand-color;
+        border-color: $body-brand-color;
+        background-color: transparent;
+    }
+}
+
+a.block {
+
+    &:hover {
+        color: inherit;
+        border-color: inherit;
+        background-color: inherit;
+    }
 }
 
 .bold {

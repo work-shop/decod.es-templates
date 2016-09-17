@@ -12,7 +12,11 @@
 @import '_menu';
 
 @import '_examples';
+@import '_example';
 @import '_documentation';
+
+@import '_python';
+@import '_code';
 
 .hidden {
     display:none !important;

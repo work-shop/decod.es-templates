@@ -1,0 +1,197 @@
+.example-header {
+    @include span-columns(12 of 12);
+
+    margin-bottom:2em;
+
+    .content-type {
+        text-align: center;
+        margin-bottom:2em;
+        text-transform: uppercase;
+
+    }
+
+    .example-git-urls {
+        @include span-columns(6 of 12);
+        @include shift(3 of 12);
+        text-align: center;
+
+        margin-bottom: 2em;
+
+        .example-git-url {
+            margin-bottom: 1em;
+
+            @include span-columns(6 of 6);
+
+            .inner-link {
+                @include span-columns(3 of 6);
+
+            }
+
+            .git-link {
+                @include span-columns(3 of 6);
+            }
+        }
+
+
+
+    }
+
+}
+
+.example-header-images {
+    @include span-columns(12 of 12);
+
+    & figure {
+        @include span-columns(4 of 12);
+        @include omega(3n);
+
+        border:$primary-division-width solid $body-light-color;
+        background-color: $body-light-color;
+
+        img {
+            @include span-columns(1 of 1);
+        }
+
+        figcaption {
+            @extend h6;
+            @include span-columns(1 of 1);
+            text-align: center;
+            color:$body-dark-color;
+            padding: .5em;
+
+        }
+
+    }
+
+    &.image-set-1 figure {
+        @include span-columns(12 of 12);
+    }
+
+    &.image-set-2 figure {
+        @include span-columns(6 of 12);
+    }
+
+    &.image-set-3 figure {
+        @include span-columns(4 of 12);
+    }
+
+    &.image-set-4 figure {
+        @include span-columns(6 of 12);
+        @include omega(2n);
+    }
+
+    &.image-set-5 figure {
+        @include span-columns(4 of 12);
+        @include omega(3n);
+    }
+
+    &.image-set-6 figure {
+        @include span-columns(4 of 12);
+        @include omega(3n);
+    }
+
+    &.image-set-7 figure {
+        @include span-columns(4 of 12);
+        @include omega(3n);
+    }
+
+    &.image-set-8 figure {
+        @include span-columns(4 of 12);
+        @include omega(3n);
+    }
+
+
+}
+
+.example-section {
+    @include span-columns(12 of 12);
+
+    margin-bottom:4em;
+}
+
+.example-section-header-region {
+    @include span-columns(12 of 12);
+    border-bottom: $secondary-division-width solid $body-light-color;
+    margin-bottom: 2em;
+}
+
+.example-section-header {
+    @include span-columns(3 of 12);
+
+}
+
+.example-section-header.wide {
+    @include span-columns(6 of 12);
+}
+
+.example-section-requirements-results {
+    @include span-columns(8 of 12);
+    @include shift(1 of 12);
+    @include omega();
+
+}
+
+.example-section-required, .example-section-result {
+    @include span-columns( 8 of 8 );
+    @include omega();
+
+    padding-top: .5em;
+    margin-bottom: 1em;
+
+    h4 {
+        @extend .bold;
+        @include span-columns(2 of 8);
+        padding-top: .5em;
+
+    }
+
+    .requirements, .results {
+        @include span-columns(6 of 8);
+
+
+        .requirement, .result {
+            margin-bottom:.5em;
+        }
+
+    }
+
+    .requirements {
+        margin-bottom: 1em;
+    }
+
+}
+
+.example-section-block {
+    @include span-columns(12 of 12);
+
+    margin-bottom:2em;
+
+    .section-block-description {
+        @include span-columns( 3 of 12 );
+
+        margin-top:1em;
+
+        font-style: italic;
+
+    }
+
+    .section-block-code {
+        @include span-columns( 8 of 12 );
+        @include shift(1 of 12);
+        overflow-x:scroll;
+        overflow-y: hidden;
+
+        background-color: $body-ultralight-color;
+
+        pre {
+            background-color: $body-ultralight-color;
+        }
+    }
+
+    .section-block-code.wide {
+        @include span-columns( 12 of 12 );
+        @include shift(0 of 12);
+    }
+
+
+}

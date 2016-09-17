@@ -1,0 +1,17 @@
+{% macro undocumented( object, link ) %}
+    <div class="no-documentation">
+        <p>This {{ object }} is undocumented. If you can document this method,
+        clone the repository, check out <a href="{{ link }}">this file</a>,
+        make your changes, and submit a pull request!</p>
+    </div>
+{% endmacro %}
+
+
+
+{% macro formatDocumentationLines( lines, object, link ) %}
+    {% if lines && lines[0] != "null" %}
+        <p>{{ lines.join(' ')|replace('\|', '</p><p>', 'g')|safe }}</p>
+    {% else %}
+        {{ undocumented( object, link ) }}
+    {% endif %}
+{% endmacro %}

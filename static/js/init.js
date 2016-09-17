@@ -11,6 +11,8 @@ module.exports = function( options ) {
     require('./fold.js')( options );
     require('./scroll.js')( options );
 
+    //var sh_highlightDocument = require('./highlighter.js');
+
     try {
 
         Typekit.load({
@@ -19,11 +21,13 @@ module.exports = function( options ) {
                 $(document).trigger('resources-loaded');
                 console.log('TypeKit resources loaded.');
                 $(window).trigger('scroll');
+                sh_highlightDocument();
             },
             inactive: function() {
                 $(document).trigger('resources-loaded');
                 $(document).trigger('resources-loaded-with-failure');
                 console.error('TypeKit load error.');
+                sh_highlightDocument();
             }
         });
 

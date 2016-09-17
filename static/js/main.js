@@ -4,5 +4,6 @@ require('./init.js')({
     mouseoutDebounce: 90,
     database: data,
     ignoredKeys: ['_url', '_name'],
-    minQueryLength: 2
+    minQueryLength: 2,
+    minimumOffset: 50
 });

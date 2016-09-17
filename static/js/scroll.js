@@ -11,7 +11,7 @@ module.exports = function( options ) {
 
             var elementHeight = target.height();
             var elementScrollTop = target.offset().top;
-            var offset = (window.innerHeight - elementHeight) / 2;
+            var offset = Math.max( options.minimumOffset, (window.innerHeight - elementHeight) / 2 );
 
             $('html, body').animate({scrollTop: [elementScrollTop - offset, "px"].join('') });
 

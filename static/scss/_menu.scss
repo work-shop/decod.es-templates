@@ -112,6 +112,82 @@ menu {
 
 }
 
+@include media-sm($and-below: true) {
+
+    #search-input {
+        font-size: 1em;
+        padding:1em;
+    }
+
+    .documentation-results {
+        @include span-columns( 6 of 12 );
+        list-style: none;
+    }
+
+    .examples-results {
+        @include span-columns( 6 of 12 );
+        list-style: none;
+    }
+
+
+    .documentation-search-result {
+        @include span-columns( 1 of 1 );
+        @include omega(1n);
+
+        .documentation-result-text {
+            @include span-columns(4 of 4);
+
+            text-align: center;
+
+            h3 {
+
+            }
+            p {
+
+            }
+
+        }
+
+        .result-source-icon {
+            @include span-columns( 4 of 4 );
+
+            margin-bottom:1em;
+
+            span {
+                @include border-radius( 20px );
+                position: relative;
+
+
+                display: block;
+                width:40px;
+                height:40px;
+                margin:0 auto;
+                padding-top:.9em;
+
+                font-size:.9em;
+
+                text-align: center;
+
+
+                color: $body-dark-color;
+                background-color:$body-light-color;
+            }
+
+
+        }
+
+        &:hover {
+            .result-source-icon span {
+                color: $body-white-color;
+                background-color:$body-dark-color;
+            }
+        }
+
+
+    }
+
+}
+
 .example-search-result {
     @include span-columns( 4 of 4 );
 }

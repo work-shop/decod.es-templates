@@ -20,7 +20,7 @@ $body-font-size: 16px;
 
 $lg-size: 1280px;
 $md-size: 950px;
-$sm-size: 540px;
+$sm-size: 600px;
 
 $lg-containter-percentage:90%;
 $md-containter-percentage:90%;
@@ -41,7 +41,7 @@ $secondary-division-width: 1px;
 $anchor-underline: 2px;
 
 
-@mixin media-lg() {
+@mixin media-lg {
     @media screen and (min-width: $lg-size) {
 
         @content;
@@ -49,20 +49,62 @@ $anchor-underline: 2px;
     }
 }
 
-@mixin media-md() {
-    @media screen and (min-width: $md-size) and (max-width: $lg-size) {
+@mixin media-md($and-below: false, $and-above: false) {
+    @if $and-below {
 
-        @content;
+        @media screen and (max-width: $lg-size) {
+
+            @content;
+
+        }
+
+    } @else if $and-above {
+
+        @media screen and (min-width: $md-size) {
+
+            @content;
+
+        }
+
+    } @else {
+
+        @media screen and (min-width: $md-size) and (max-width: $lg-size) {
+
+            @content;
+
+        }
 
     }
 }
 
-@mixin media-sm() {
-    @media screen and (min-width: $sm-size) and (max-width: $md-size) {
+@mixin media-sm($and-below: false, $and-above: false) {
 
-        @content;
+    @if $and-below {
+
+        @media screen and (max-width: $md-size) {
+
+            @content;
+
+        }
+
+    } @else if $and-above {
+
+        @media screen and (min-width: $sm-size) {
+
+            @content;
+
+        }
+
+    } @else {
+
+        @media screen and (min-width: $sm-size) and (max-width: $md-size) {
+
+            @content;
+
+        }
 
     }
+
 }
 
 @mixin media-xs() {

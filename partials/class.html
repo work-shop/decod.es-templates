@@ -29,7 +29,7 @@
         <h4 class="class-type content-type">Class</h4>
         <h1 class="class-title title">{{ name( item ) }}</h1>
         {% if item.documentation.description %}
-            <div class="class-documentation">
+            <div class="class-documentation header-section-description">
             {% for line in item.documentation.description %}
                 {% if line.toLowerCase() === "null" %}
                     {{ text.undocumentedClass( item.giturl ) }}
@@ -52,7 +52,7 @@
     <h3 class="method-declaration">
     <span class=method-name>{{ definition.name }}</span>
     {% if definition.documentation.parameters || definition.documentation.types || definition.documentation.rtype || definition.documentation.rvalue %}
-        :
+        <span class="method-type-signature">:
         {% if definition.documentation.parameters & definition.documentation.types %}
             {% set len = definition.documentation.parameters|size %}
             <span class="parameter-symbol">(</span>
@@ -65,7 +65,7 @@
         {% if definition.documentation.rtype & definition.documentation.rvalue %}
             {{ resolve( definition.documentation.rtype ) }}
         {% endif %}
-
+        </span>
     {% endif %}
     </h3>
 {% endmacro %}

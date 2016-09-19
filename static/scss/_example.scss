@@ -7,6 +7,7 @@
         text-align: center;
         margin-bottom:2em;
         text-transform: uppercase;
+        font-weight: bold;
 
     }
 
@@ -38,6 +39,39 @@
 
 }
 
+@include media-sm($and-below: true) {
+    .example-header {
+
+        .example-git-urls {
+            @include span-columns(12 of 12);
+            @include shift(0 of 12);
+
+            .example-git-url {
+
+                @include span-columns(12 of 12);
+
+                .inner-link {
+                    @include span-columns(6 of 12);
+                    text-align:right;
+
+                }
+
+                .git-link {
+                    @include span-columns(6 of 12);
+                    text-align:left;
+
+                    .git-link-label {
+                        display:none;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+
 .example-header-images {
     @include span-columns(12 of 12);
 
@@ -47,6 +81,8 @@
 
         border:$primary-division-width solid $body-light-color;
         background-color: $body-light-color;
+
+        margin-bottom:1em;
 
         img {
             @include span-columns(1 of 1);
@@ -101,6 +137,26 @@
     }
 
 
+}
+
+
+@include media-xs () {
+
+    .example-header-images {
+
+        & figure {
+            @include span-columns(12 of 12);
+            @include omega(0n);
+
+        }
+
+
+        &.image-set-1 figure, &.image-set-2 figure, &.image-set-3 figure, &.image-set-4 figure {
+            @include span-columns(12 of 12);
+            @include omega(0n);
+        }
+
+    }
 }
 
 .example-section {
@@ -167,20 +223,63 @@
 
     margin-bottom:2em;
 
-    .section-block-description {
-        @include span-columns( 3 of 12 );
+}
 
-        margin-top:1em;
+.section-block-description {
+    @include span-columns( 3 of 12 );
+
+    margin-top:1em;
+
+    font-style: italic;
+
+}
+
+.section-block-code {
+    @include span-columns( 8 of 12 );
+    @include shift(1 of 12);
+    overflow-x:scroll;
+    overflow-y: hidden;
+
+    background-color: $body-ultralight-color;
+
+    pre {
+        background-color: $body-ultralight-color;
+    }
+}
+
+.section-block-code.wide {
+    @include span-columns( 12 of 12 );
+    @include shift(0 of 12);
+}
+
+
+
+@include media-sm( $and-below: true ) {
+    .example-section-header, .example-section-header.wide {
+        @include span-columns(12 of 12);
+
+    }
+
+    .example-section-requirements-results {
+        @include span-columns(12 of 12);
+        @include shift(0 of 12);
+        @include omega();
+
+    }
+
+    .section-block-description {
+        @include span-columns( 12 of 12 );
+
+        margin-top:0em;
 
         font-style: italic;
 
     }
 
     .section-block-code {
-        @include span-columns( 8 of 12 );
-        @include shift(1 of 12);
-        overflow-x:scroll;
-        overflow-y: hidden;
+        @include span-columns( 12 of 12 );
+        @include shift(0 of 12);
+        font-size:14px;
 
         background-color: $body-ultralight-color;
 
@@ -193,6 +292,4 @@
         @include span-columns( 12 of 12 );
         @include shift(0 of 12);
     }
-
-
 }

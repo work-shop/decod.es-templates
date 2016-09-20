@@ -49,11 +49,13 @@
                     </a>
                 </li>
                 {% for obj in sortByKey( 'definedIn', data.decodes.extensions ) %}
-                    <li class="nav-item-sublist-item">
-                        <a data-unfold-trigger="#{{ convertFilename( loop.key )|lower|replace(' ', '-', 'g') }}" class="nav-item-sublist-link" href="{% if url( item ) != url( data.decodes ) %}{{ url( data.decodes ) }}{% endif %}#{{ convertFilename( loop.key )|lower|replace(' ', '-', 'g') }}">
-                            {{ title( convertFilename( loop.key ) ) }}
-                        </a>
-                    </li>
+                    {% if loop.key.toLowerCase() != "constructor" %}
+                        <li class="nav-item-sublist-item">
+                            <a data-unfold-trigger="#{{ convertFilename( loop.key )|lower|replace(' ', '-', 'g') }}" class="nav-item-sublist-link" href="{% if url( item ) != url( data.decodes ) %}{{ url( data.decodes ) }}{% endif %}#{{ convertFilename( loop.key )|lower|replace(' ', '-', 'g') }}">
+                                {{ title( convertFilename( loop.key ) ) }}
+                            </a>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>

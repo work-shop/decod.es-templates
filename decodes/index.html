@@ -22,7 +22,11 @@
 
         {% for object in sortByKey( 'definedIn', item.extensions ) %}
 
-            {{ docs.section( convertFilename( loop.key ), object, state ) }}
+            {% if loop.key.toLowerCase() != "constructor" %}
+
+                {{ docs.section( convertFilename( loop.key ), object, state ) }}
+
+            {% endif %}
 
         {% endfor %}
 

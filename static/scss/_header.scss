@@ -12,6 +12,8 @@ header {
     text-align: center;
     border-bottom: 0;
 
+    font-size: .9em;
+
     &.active {
         background-color: $body-header-light-color;
         border:$primary-division-width solid $body-header-color;
@@ -56,15 +58,16 @@ header {
         @include span-columns(1 of 1);
 
         border-bottom: $primary-division-width solid $body-header-color;
-        padding-top:.5em;
-        padding-bottom:.5em;
 
         a {
+            padding-top:.5em;
+            padding-bottom:.5em;
+            display: block;
             border: 0px;
-        }
 
-        &:hover {
-            background-color: $body-header-light-color;
+            &:hover {
+                background-color: $body-header-light-color;
+            }
         }
 
         &:last-child {
@@ -108,10 +111,6 @@ header[data-header-state="fixed"], header[data-header-state="search"] {
 
     }
 
-    .menu-toggle {
-        @include shift(4 of 12);
-    }
-
     .nav-item-sublist {
         @include span-columns(26 of 12);
 
@@ -135,7 +134,7 @@ header[data-header-state="free"] {
         @include span-columns(26 of 12);
 
         position: absolute;
-        top: 90px;
+        top: 50px;
         left:-60%;
     }
 
@@ -149,13 +148,12 @@ header[data-header-state="search"] {
     header[data-header-state="free"] {
         @include span-columns(5 of 12);
 
-        right:(100% - $lg-containter-percentage) / 2;
-        top:(100% - $lg-containter-percentage) / 2;
+        right:-2%;
+        top:4%;
 
         .nav-item {
             @include span-columns(3 of 12);
             position:relative;
-            min-height: 40px;
 
             .nav-item-block {
                 @include center();
@@ -171,13 +169,13 @@ header[data-header-state="search"] {
     header[data-header-state="free"] {
         @include span-columns(6 of 12);
 
-        right:(100% - $lg-containter-percentage) / 2;
-        top:(100% - $lg-containter-percentage) / 2;
+        right:-2%;
+        top:4%;
 
         .nav-item {
             @include span-columns(3 of 12);
             position:relative;
-            min-height: 40px;
+            min-height: 35px;
 
             .nav-item-block {
                 @include center();
@@ -204,10 +202,6 @@ header[data-header-state="search"] {
             position: static;
             margin-top:0;
             margin-bottom:.5em;
-
-            &:last-child {
-                @include shift( 0 of 12 );
-            }
 
         }
 
